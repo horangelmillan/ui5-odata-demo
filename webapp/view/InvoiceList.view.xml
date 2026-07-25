@@ -1,0 +1,70 @@
+<mvc:View
+    controllerName="ui5.odata.demo.controller.InvoiceList"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:table="sap.ui.table"
+    xmlns:core="sap.ui.core">
+
+    <Page title="{i18n>page.invoiceList.title}">
+        <headerContent>
+            <Button text="{i18n>button.newInvoice}" press=".onCreateInvoice" type="Emphasized" />
+            <Button text="{i18n>button.edit}" press=".onEditInvoice" />
+            <Button text="{i18n>button.delete}" press=".onDeleteInvoice" />
+        </headerContent>
+        <content>
+            <Toolbar id="filterToolbar">
+                <Label text="{i18n>invoice.column.estado}" />
+                <ComboBox id="filterEstado" placeholder="Todos" forceSelection="false" width="10rem">
+                    <core:Item key="" text="Todos" />
+                    <core:Item key="PENDIENTE" text="PENDIENTE" />
+                    <core:Item key="PAGADA" text="PAGADA" />
+                    <core:Item key="VENCIDA" text="VENCIDA" />
+                </ComboBox>
+                <ToolbarSpacer />
+                <Label text="{i18n>invoice.create.field.moneda}" />
+                <ComboBox id="filterMoneda" placeholder="Todas" forceSelection="false" width="8rem">
+                    <core:Item key="" text="Todas" />
+                    <core:Item key="EUR" text="EUR" />
+                    <core:Item key="USD" text="USD" />
+                </ComboBox>
+                <ToolbarSpacer />
+                <Button text="Filtrar" press=".onFilter" type="Default" />
+                <Button text="Limpiar" press=".onClearFilter" type="Default" />
+            </Toolbar>
+            <table:Table id="tblInvoices"
+                rows="{path: '/invoice-odata', parameters: { $expand: 'customer,company' }}"
+                threshold="10"
+                enableBusyIndicator="true"
+                selectionMode="Single"
+                selectionBehavior="Row"
+                rowSelectionChange=".onInvoiceSelect">
+                <table:columns>
+                    <table:Column>
+                        <Label text="{i18n>invoice.column.id}"/>
+                        <table:template><Text text="{id}"/></table:template>
+                    </table:Column>
+                    <table:Column>
+                        <Label text="{i18n>invoice.column.cliente}"/>
+                        <table:template><Text text="{customer/nombre}"/></table:template>
+                    </table:Column>
+                    <table:Column>
+                        <Label text="{i18n>invoice.column.importe}"/>
+                        <table:template>
+                            <ObjectNumber number="{importe}" unit="{moneda}"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column>
+                        <Label text="{i18n>invoice.column.estado}"/>
+                        <table:template>
+                            <ObjectStatus text="{estado}"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column>
+                        <Label text="{i18n>invoice.column.fecha}"/>
+                        <table:template><Text text="{path: 'fecha', type: 'sap.ui.model.type.String'}"/></table:template>
+                    </table:Column>
+                </table:columns>
+            </table:Table>
+        </content>
+    </Page>
+</mvc:View>

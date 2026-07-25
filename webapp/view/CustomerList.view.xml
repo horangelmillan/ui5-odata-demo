@@ -1,0 +1,47 @@
+<mvc:View
+    controllerName="ui5.odata.demo.controller.CustomerList"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:table="sap.ui.table"
+    xmlns:core="sap.ui.core">
+
+    <Page title="{i18n>page.customerList.title}">
+        <headerContent>
+            <Button text="{i18n>button.newCustomer}" press=".onCreateCustomer" type="Emphasized" />
+        </headerContent>
+        <content>
+            <Toolbar id="filterToolbar">
+                <Label text="{i18n>customer.column.nombre}" />
+                <Input id="filterNombre" placeholder="Buscar por nombre..." width="15rem" />
+                <ToolbarSpacer />
+                <Label text="{i18n>customer.column.pais}" />
+                <Input id="filterPais" placeholder="Buscar por país..." width="15rem" />
+                <ToolbarSpacer />
+                <Button text="Filtrar" press=".onFilter" type="Default" />
+                <Button text="Limpiar" press=".onClearFilter" type="Default" />
+            </Toolbar>
+            <table:Table id="tblCustomers"
+                rows="{/customer-odata}"
+                threshold="10"
+                enableBusyIndicator="true"
+                selectionMode="Single"
+                selectionBehavior="Row"
+                rowSelectionChange=".onCustomerSelect">
+                <table:columns>
+                    <table:Column>
+                        <Label text="{i18n>customer.column.id}"/>
+                        <table:template><Text text="{id}"/></table:template>
+                    </table:Column>
+                    <table:Column>
+                        <Label text="{i18n>customer.column.nombre}"/>
+                        <table:template><Text text="{nombre}"/></table:template>
+                    </table:Column>
+                    <table:Column>
+                        <Label text="{i18n>customer.column.pais}"/>
+                        <table:template><Text text="{pais}"/></table:template>
+                    </table:Column>
+                </table:columns>
+            </table:Table>
+        </content>
+    </Page>
+</mvc:View>

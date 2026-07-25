@@ -1,0 +1,18 @@
+{
+  "name": "ui5-odata-demo",
+  "version": "1.0.0",
+  "description": "Banco de pruebas de integración SAPUI5/OpenUI5 OData V4 contra servidor-odata (Fases A-P + validación real).",
+  "private": true,
+  "packageManager": "pnpm@9.15.4",
+  "scripts": {
+    "serve": "ui5 serve --port 8080",
+    "lint": "ui5lint",
+    "build": "ui5 build --all",
+    "validate": "node tests/validate.mjs"
+  },
+  "devDependencies": {
+    "@ui5/cli": "4.0.57",
+    "@ui5/linter": "1.23.1",
+    "playwright": "1.61.1"
+  }
+}

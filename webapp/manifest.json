@@ -1,0 +1,151 @@
+{
+  "_version": "2.0.0",
+  "sap.app": {
+    "id": "ui5.odata.demo",
+    "type": "application",
+    "title": "UI5 OData V4 Integration Test-Bench",
+    "description": "Validates servidor-odata OData V4 endpoint compatibility with SAPUI5/OpenUI5 ODataModel v4.",
+    "applicationVersion": { "version": "1.0.0" },
+    "dataSources": {
+      "main": {
+        "uri": "/odata/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": { "desktop": true, "tablet": true, "phone": true },
+    "supportedThemes": ["sap_horizon"]
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.150.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ui.table": {},
+        "sap.ui.unified": {}
+      }
+    },
+    "models": {
+      "": {
+        "dataSource": "main",
+        "type": "sap.ui.model.odata.v4.ODataModel",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": false,
+          "earlyRequests": true,
+          "groupId": "$direct",
+          "updateGroupId": "changes"
+        }
+      },
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "ui5.odata.demo.i18n.i18n"
+        }
+      }
+    },
+    "contentDensities": { "compact": true, "cozy": true },
+    "rootView": {
+      "viewName": "ui5.odata.demo.view.App",
+      "type": "XML",
+      "id": "app"
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "clearControlAggregation": true
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "demo",
+          "target": ["demo"]
+        },
+        {
+          "pattern": "finance",
+          "name": "finance",
+          "target": ["finance"]
+        },
+        {
+          "pattern": "finance/invoice-odata",
+          "name": "invoiceList",
+          "target": ["invoiceList"]
+        },
+        {
+          "pattern": "finance/invoice-odata/{invoiceId}",
+          "name": "invoiceDetail",
+          "target": ["invoiceDetail"]
+        },
+        {
+          "pattern": "finance/customer-odata",
+          "name": "customerList",
+          "target": ["customerList"]
+        },
+        {
+          "pattern": "finance/customer-odata/{customerId}",
+          "name": "customerDetail",
+          "target": ["customerDetail"]
+        },
+        {
+          "pattern": "finance/payment-odata",
+          "name": "paymentList",
+          "target": ["paymentList"]
+        }
+      ],
+      "targets": {
+        "demo": {
+          "type": "View",
+          "name": "App",
+          "path": "ui5.odata.demo.view",
+          "controlAggregation": "pages"
+        },
+        "finance": {
+          "type": "View",
+          "name": "Finance",
+          "path": "ui5.odata.demo.view",
+          "controlAggregation": "pages"
+        },
+        "invoiceList": {
+          "type": "View",
+          "name": "InvoiceList",
+          "path": "ui5.odata.demo.view",
+          "controlAggregation": "pages"
+        },
+        "invoiceDetail": {
+          "type": "View",
+          "name": "InvoiceDetail",
+          "path": "ui5.odata.demo.view",
+          "controlAggregation": "pages"
+        },
+        "customerList": {
+          "type": "View",
+          "name": "CustomerList",
+          "path": "ui5.odata.demo.view",
+          "controlAggregation": "pages"
+        },
+        "customerDetail": {
+          "type": "View",
+          "name": "CustomerDetail",
+          "path": "ui5.odata.demo.view",
+          "controlAggregation": "pages"
+        },
+        "paymentList": {
+          "type": "View",
+          "name": "PaymentList",
+          "path": "ui5.odata.demo.view",
+          "controlAggregation": "pages"
+        }
+      }
+    }
+  }
+}

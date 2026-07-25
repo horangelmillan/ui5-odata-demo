@@ -1,0 +1,55 @@
+{
+  "metaReady": true,
+  "metaError": null,
+  "results": [
+    {
+      "name": "Metadata served to UI5 (/odata/$metadata)",
+      "ok": true,
+      "info": "servedToUI5IsStandard=true contentType=application/xml; charset=utf-8 length=11650 | format=EDMX isStandard=true",
+      "url": "/odata/$metadata"
+    },
+    {
+      "name": "List ($count/$select/$orderby)",
+      "ok": true,
+      "info": "total@odata.count=13 rows=3 first.precio(type)=string",
+      "url": "/odata/product-odata?$count=true&$orderby=id desc&$select=id,nombre,precio,categoria"
+    },
+    {
+      "name": "By-key access /product-odata(348)",
+      "ok": true,
+      "info": "id=348 nombre=Laptop",
+      "url": "/odata/product-odata(348)"
+    },
+    {
+      "name": "$expand category (belongsTo) + products (hasMany, nested $select/$top)",
+      "ok": true,
+      "info": "product.category={\"id\":1341,\"nombre\":\"Electrónica\",\"createdAt\":\"2026-07-17T06:14:42.935Z\",\"updatedAt\":\"2026-07-17T06:14:42.935Z\",\"@odata.etag\":\"2026-07-17T06:14:42.935Z\"} | category.products=11 items",
+      "url": "/odata/product-odata(348)?$expand=category AND /odata/category-odata(1341)?$expand=products($select=id,nombre;$top=2)"
+    },
+    {
+      "name": "Create via $direct (POST)",
+      "ok": true,
+      "info": "created id=363",
+      "url": "/odata/product-odata (POST, groupId=$direct)"
+    },
+    {
+      "name": "Patch via $direct (PATCH)",
+      "ok": true,
+      "info": "patched id=364",
+      "url": "/odata/product-odata(364) (PATCH, groupId=$direct)"
+    },
+    {
+      "name": "Delete via $direct (DELETE)",
+      "ok": true,
+      "info": "deleted id=365",
+      "url": "/odata/product-odata(365) (DELETE, groupId=$direct)"
+    },
+    {
+      "name": "Create via $batch changeset (POST)",
+      "ok": false,
+      "info": "server $batch changeset did not return the created entities (created() timed out)",
+      "url": "/odata/$batch (multipart/mixed changeset, groupId=changes)"
+    }
+  ],
+  "rawMetadata": null
+}

@@ -1,0 +1,61 @@
+<mvc:View
+    controllerName="ui5.odata.demo.controller.InvoiceDetail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+
+    <Page title="{i18n>page.invoiceDetail.title}" showNavButton="true" navButtonPress=".onNavBack">
+        <content>
+            <f:Form editable="false">
+                <f:title><core:Title text="{i18n>invoiceDetail.form.title}"/></f:title>
+                <f:layout><f:ResponsiveGridLayout/></f:layout>
+                <f:formContainers>
+                    <f:FormContainer>
+                        <f:formElements>
+                            <f:FormElement label="{i18n>invoiceDetail.field.id}">
+                                <f:fields><Text text="{id}"/></f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>invoiceDetail.field.cliente}">
+                                <f:fields><Text text="{customer/nombre}"/></f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>invoiceDetail.field.sociedad}">
+                                <f:fields><Text text="{company/nombre}"/></f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>invoiceDetail.field.importe}">
+                                <f:fields><ObjectNumber number="{importe}" unit="{moneda}"/></f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>invoiceDetail.field.estado}">
+                                <f:fields><Text text="{estado}"/></f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>invoiceDetail.field.fecha}">
+                                <f:fields><Text text="{fecha}"/></f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                </f:formContainers>
+            </f:Form>
+
+            <Panel headerText="{i18n>invoiceDetail.items.panel.title}">
+                <Table items="{items}">
+                    <columns>
+                        <Column><Label text="{i18n>invoiceDetail.items.column.material}"/></Column>
+                        <Column><Label text="{i18n>invoiceDetail.items.column.cantidad}"/></Column>
+                        <Column><Label text="{i18n>invoiceDetail.items.column.importe}"/></Column>
+                        <Column><Label text="{i18n>invoiceDetail.items.column.cuenta}"/></Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{material}"/>
+                                <Text text="{cantidad}"/>
+                                <ObjectNumber number="{importe}"/>
+                                <Text text="{glAccount/nombre}"/>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>

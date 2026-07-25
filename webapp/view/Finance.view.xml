@@ -1,0 +1,34 @@
+<mvc:View
+    controllerName="ui5.odata.demo.controller.Finance"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Page title="{i18n>page.finance.title}">
+        <headerContent>
+            <Button text="{i18n>button.demo}" press=".onNavToDemo"/>
+            <Button text="{i18n>button.finance}" press=".onNavToFinance" type="Emphasized"/>
+        </headerContent>
+        <content>
+            <List id="entityList" itemPress=".onEntityPress">
+                <items>
+                    <ActionListItem text="{i18n>finance.entity.invoice}" icon="sap-icon://fa-solid/file-invoice">
+                        <customData>
+                            <core:CustomData key="entityName" value="invoice"/>
+                        </customData>
+                    </ActionListItem>
+                    <ActionListItem text="{i18n>finance.entity.customer}" icon="sap-icon://person-placeholder">
+                        <customData>
+                            <core:CustomData key="entityName" value="customer"/>
+                        </customData>
+                    </ActionListItem>
+                    <ActionListItem text="{i18n>finance.entity.payment}" icon="sap-icon://money-bills">
+                        <customData>
+                            <core:CustomData key="entityName" value="payment"/>
+                        </customData>
+                    </ActionListItem>
+                </items>
+            </List>
+        </content>
+    </Page>
+</mvc:View>

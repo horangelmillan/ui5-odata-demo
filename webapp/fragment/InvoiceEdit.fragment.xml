@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+    <Dialog id="invoiceEditDialog" title="{i18n>invoice.edit.title}" contentWidth="500px" afterClose=".onEditInvoiceDialogClosed">
+        <content>
+            <VBox id="editInvoiceMessageStripBox" visible="false" />
+            <f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false">
+                <f:content>
+                    <Label text="{i18n>invoice.create.field.id}" />
+                    <Input id="editInvoiceId" editable="false" />
+
+                    <Label text="{i18n>invoice.create.field.cliente}" />
+                    <ComboBox id="editInvoiceCustomer" items="{/customer-odata}" required="true">
+                        <core:Item key="{id}" text="{nombre}" />
+                    </ComboBox>
+
+                    <Label text="{i18n>invoice.create.field.sociedad}" />
+                    <ComboBox id="editInvoiceCompany" items="{/company-odata}" required="true">
+                        <core:Item key="{id}" text="{nombre}" />
+                    </ComboBox>
+
+                    <Label text="{i18n>invoice.create.field.importe}" />
+                    <Input id="editInvoiceImporte" type="Number" step="0.01" required="true" />
+
+                    <Label text="{i18n>invoice.create.field.moneda}" />
+                    <ComboBox id="editInvoiceMoneda" required="true">
+                        <core:Item key="EUR" text="EUR" />
+                        <core:Item key="USD" text="USD" />
+                    </ComboBox>
+
+                    <Label text="{i18n>invoice.create.field.fecha}" />
+                    <DatePicker id="editInvoiceFecha" required="true" displayFormat="yyyy-MM-dd" />
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <buttons>
+            <Button text="{i18n>button.save}" press=".onEditInvoiceSave" type="Emphasized" />
+            <Button text="{i18n>button.cancel}" press=".onEditInvoiceCancel" />
+            <Button text="{i18n>button.delete}" press=".onDeleteInvoiceFromEdit" type="Reject" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

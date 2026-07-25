@@ -1,0 +1,40 @@
+<mvc:View
+    controllerName="ui5.odata.demo.controller.PaymentList"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:table="sap.ui.table">
+
+    <Page title="{i18n>page.paymentList.title}">
+        <content>
+            <table:Table id="tblPayments"
+                rows="{/payment-odata}"
+                threshold="10"
+                enableBusyIndicator="true"
+                selectionMode="Single"
+                selectionBehavior="Row">
+                <table:columns>
+                    <table:Column>
+                        <Label text="{i18n>payment.column.id}"/>
+                        <table:template><Text text="{id}"/></table:template>
+                    </table:Column>
+                    <table:Column>
+                        <Label text="{i18n>payment.column.factura}"/>
+                        <table:template><Text text="{invoice/id}"/></table:template>
+                    </table:Column>
+                    <table:Column>
+                        <Label text="{i18n>payment.column.importe}"/>
+                        <table:template><ObjectNumber number="{importe}"/></table:template>
+                    </table:Column>
+                    <table:Column>
+                        <Label text="{i18n>payment.column.metodo}"/>
+                        <table:template><Text text="{metodo}"/></table:template>
+                    </table:Column>
+                    <table:Column>
+                        <Label text="{i18n>payment.column.fecha}"/>
+                        <table:template><Text text="{fecha}"/></table:template>
+                    </table:Column>
+                </table:columns>
+            </table:Table>
+        </content>
+    </Page>
+</mvc:View>

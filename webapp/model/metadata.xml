@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/os/vocabularies/Org.OData.Core.V1.xml">
+    <edmx:Include Namespace="Org.OData.Core.V1" Alias="Core"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/os/vocabularies/Org.OData.Capabilities.V1.xml">
+    <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema Namespace="OData" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="ProductOData">
+        <Key><PropertyRef Name="id"/></Key>
+        <Property Name="id" Type="Edm.Int32"/>
+        <Property Name="nombre" Type="Edm.String"/>
+        <Property Name="precio" Type="Edm.Decimal" Precision="12" Scale="2"/>
+        <Property Name="categoria" Type="Edm.String"/>
+        <Property Name="categoriaId" Type="Edm.Int32"/>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset"/>
+        <Property Name="updatedAt" Type="Edm.DateTimeOffset"/>
+        <NavigationProperty Name="category" Type="OData.CategoryOData">
+          <ReferentialConstraint Property="categoriaId" ReferencedProperty="id"/>
+        </NavigationProperty>
+      </EntityType>
+
+      <EntityType Name="CategoryOData">
+        <Key><PropertyRef Name="id"/></Key>
+        <Property Name="id" Type="Edm.Int32"/>
+        <Property Name="nombre" Type="Edm.String"/>
+        <NavigationProperty Name="products" Type="Collection(OData.ProductOData)">
+          <ReferentialConstraint Property="id" ReferencedProperty="categoriaId"/>
+        </NavigationProperty>
+      </EntityType>
+
+      <EntityContainer Name="Container">
+        <EntitySet Name="product-odata" EntityType="OData.ProductOData">
+          <NavigationPropertyBinding Path="category" Target="category-odata"/>
+          <Annotation Term="Org.OData.Capabilities.V1.CountRestrictions">
+            <Record><PropertyValue Property="Countable" Bool="true"/></Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.SortRestrictions">
+            <Record><PropertyValue Property="Sortable" Bool="true"/></Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.FilterRestrictions">
+            <Record><PropertyValue Property="Filterable" Bool="true"/></Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.TopSupported" Bool="true"/>
+          <Annotation Term="Org.OData.Capabilities.V1.SkipSupported" Bool="true"/>
+          <Annotation Term="Org.OData.Capabilities.V1.ExpandRestrictions">
+            <Record><PropertyValue Property="Expandable" Bool="true"/></Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.InsertRestrictions">
+            <Record><PropertyValue Property="Insertable" Bool="true"/></Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.UpdateRestrictions">
+            <Record><PropertyValue Property="Updatable" Bool="true"/></Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.DeleteRestrictions">
+            <Record><PropertyValue Property="Deletable" Bool="true"/></Record>
+          </Annotation>
+        </EntitySet>
+        <EntitySet Name="category-odata" EntityType="OData.CategoryOData">
+          <NavigationPropertyBinding Path="products" Target="product-odata"/>
+          <Annotation Term="Org.OData.Capabilities.V1.CountRestrictions">
+            <Record><PropertyValue Property="Countable" Bool="true"/></Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.SortRestrictions">
+            <Record><PropertyValue Property="Sortable" Bool="true"/></Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.FilterRestrictions">
+            <Record><PropertyValue Property="Filterable" Bool="true"/></Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.TopSupported" Bool="true"/>
+          <Annotation Term="Org.OData.Capabilities.V1.SkipSupported" Bool="true"/>
+          <Annotation Term="Org.OData.Capabilities.V1.ExpandRestrictions">
+            <Record><PropertyValue Property="Expandable" Bool="true"/></Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.InsertRestrictions">
+            <Record><PropertyValue Property="Insertable" Bool="true"/></Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.UpdateRestrictions">
+            <Record><PropertyValue Property="Updatable" Bool="true"/></Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.DeleteRestrictions">
+            <Record><PropertyValue Property="Deletable" Bool="true"/></Record>
+          </Annotation>
+        </EntitySet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

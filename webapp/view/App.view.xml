@@ -1,0 +1,73 @@
+<mvc:View
+  controllerName="ui5.odata.demo.controller.App"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:table="sap.ui.table"
+  busyIndicatorDelay="0">
+
+  <App id="app">
+    <pages>
+      <Page title="{i18n>page.demo.title}">
+        <headerContent>
+          <Button text="{i18n>button.demo}" press=".onNavToDemo" type="Emphasized"/>
+          <Button text="{i18n>button.finance}" press=".onNavToFinance"/>
+          <Button id="btnRun" text="{i18n>button.runAll}" press=".onRunAll"/>
+          <Button id="btnReset" text="{i18n>button.resetLog}" press=".onResetLog"/>
+        </headerContent>
+        <content>
+          <Panel headerText="{i18n>panel.products.title}"
+                 class="sapUiResponsiveMargin" expandable="true" expanded="true">
+            <content>
+              <table:Table id="tblProducts"
+                rows="{/product-odata}"
+                threshold="5"
+                enableBusyIndicator="true"
+                selectionMode="Single"
+                selectionBehavior="Row"
+                rowSelectionChange=".onRowSelect"
+                ariaLabelledBy="title">
+                <table:columns>
+                  <table:Column sortProperty="id" filterProperty="id">
+                    <Label text="{i18n>product.column.id}"/>
+                    <table:template><Text text="{id}"/></table:template>
+                  </table:Column>
+                  <table:Column sortProperty="nombre" filterProperty="nombre">
+                    <Label text="{i18n>product.column.nombre}"/>
+                    <table:template><Text text="{nombre}"/></table:template>
+                  </table:Column>
+                  <table:Column sortProperty="precio">
+                    <Label text="{i18n>product.column.precio}"/>
+                    <table:template><ObjectNumber number="{precio}" unit="EUR"/></table:template>
+                  </table:Column>
+                  <table:Column>
+                    <Label text="{i18n>product.column.categoria}"/>
+                    <table:template><Text text="{categoria}"/></table:template>
+                  </table:Column>
+                </table:columns>
+              </table:Table>
+            </content>
+          </Panel>
+
+          <Panel headerText="{i18n>panel.selected.title}"
+                 class="sapUiResponsiveMargin" expandable="true" expanded="true">
+            <content>
+              <VBox class="sapUiSmallMargin">
+                <HBox><Label text="{i18n>selection.byKey}" width="14rem"/><Text id="txtByKey" text="--"/></HBox>
+                <HBox><Label text="{i18n>selection.expandCategory}" width="14rem"/><Text id="txtExpandCat" text="--"/></HBox>
+                <HBox><Label text="{i18n>selection.expandProducts}" width="14rem"/><Text id="txtExpandProd" text="--"/></HBox>
+              </VBox>
+            </content>
+          </Panel>
+
+          <Panel headerText="{i18n>panel.suite.title}"
+                 class="sapUiResponsiveMargin" expandable="true" expanded="true">
+            <content>
+              <TextArea id="log" width="100%" height="320px" editable="false" value=""/>
+            </content>
+          </Panel>
+        </content>
+      </Page>
+    </pages>
+  </App>
+</mvc:View>
