@@ -4,6 +4,8 @@
     xmlns="sap.m"
     xmlns:table="sap.ui.table"
     xmlns:core="sap.ui.core">
+    <!-- ui5lint-disable no-globals -->
+
 
     <Page title="{i18n>page.invoiceList.title}">
         <headerContent>

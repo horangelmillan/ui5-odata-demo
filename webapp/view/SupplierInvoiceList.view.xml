@@ -3,6 +3,8 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:table="sap.ui.table">
+    <!-- ui5lint-disable no-globals -->
+
     <Page title="{i18n>page.supplierInvoiceList.title}">
         <content>
             <table:Table id="tblSupplierInvoices"

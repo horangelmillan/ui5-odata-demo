@@ -4,6 +4,8 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:f="sap.ui.layout.form">
+    <!-- ui5lint-disable no-globals -->
+
 
     <Page title="{i18n>page.customerDetail.title}" showNavButton="true" navButtonPress=".onNavBack">
         <content>
