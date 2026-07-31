@@ -12,7 +12,8 @@
                 threshold="10"
                 enableBusyIndicator="true"
                 selectionMode="Single"
-                selectionBehavior="Row">
+                selectionBehavior="Row"
+                rowSelectionChange=".onSupplierInvoiceSelect">
                 <table:columns>
                     <table:Column><Label text="{i18n>supplierinvoice.column.id}"/><table:template><Text text="{id}"/></table:template></table:Column>
                     <table:Column><Label text="{i18n>supplierinvoice.column.proveedor}"/><table:template><Text text="{supplierId}"/></table:template></table:Column>
