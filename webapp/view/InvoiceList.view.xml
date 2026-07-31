@@ -14,7 +14,7 @@
         <content>
             <Toolbar id="filterToolbar">
                 <Label text="{i18n>invoice.column.estado}" />
-                <ComboBox id="filterEstado" placeholder="Todos" forceSelection="false" width="10rem">
+                <ComboBox id="filterEstado" placeholder="Todos" width="10rem">
                     <core:Item key="" text="Todos" />
                     <core:Item key="PENDIENTE" text="PENDIENTE" />
                     <core:Item key="PAGADA" text="PAGADA" />
@@ -22,7 +22,7 @@
                 </ComboBox>
                 <ToolbarSpacer />
                 <Label text="{i18n>invoice.create.field.moneda}" />
-                <ComboBox id="filterMoneda" placeholder="Todas" forceSelection="false" width="8rem">
+                <ComboBox id="filterMoneda" placeholder="Todas" width="8rem">
                     <core:Item key="" text="Todas" />
                     <core:Item key="EUR" text="EUR" />
                     <core:Item key="USD" text="USD" />

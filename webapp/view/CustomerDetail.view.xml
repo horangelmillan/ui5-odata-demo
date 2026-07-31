@@ -41,7 +41,7 @@
                                 <Text text="{id}"/>
                                 <ObjectNumber number="{importe}" unit="{moneda}"/>
                                 <Text text="{estado}"/>
-                                <Text text="{fecha}"/>
+                                <Text text="{path: 'fecha', type: 'sap.ui.model.type.String'}"/>
                             </cells>
                         </ColumnListItem>
                     </items>
