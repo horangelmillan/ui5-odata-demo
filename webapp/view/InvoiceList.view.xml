@@ -63,6 +63,10 @@
                         <Label text="{i18n>invoice.column.fecha}"/>
                         <table:template><Text text="{path: 'fecha', type: 'sap.ui.model.type.String'}"/></table:template>
                     </table:Column>
+                    <table:Column>
+                        <Label text="{i18n>invoice.column.vencimiento}"/>
+                        <table:template><Text text="{path: 'dueDate', type: 'sap.ui.model.type.String'}"/></table:template>
+                    </table:Column>
                 </table:columns>
             </table:Table>
         </content>

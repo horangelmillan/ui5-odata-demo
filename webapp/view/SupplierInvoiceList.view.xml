@@ -17,7 +17,8 @@
                     <table:Column><Label text="{i18n>supplierinvoice.column.importe}"/><table:template><ObjectNumber number="{importe}"/></table:template></table:Column>
                     <table:Column><Label text="{i18n>supplierinvoice.column.moneda}"/><table:template><Text text="{moneda}"/></table:template></table:Column>
                     <table:Column><Label text="{i18n>supplierinvoice.column.estado}"/><table:template><Text text="{estado}"/></table:template></table:Column>
-                    <table:Column><Label text="{i18n>supplierinvoice.column.fecha}"/><table:template><Text text="{fecha}"/></table:template></table:Column>
+                    <table:Column><Label text="{i18n>supplierinvoice.column.fecha}"/><table:template><Text text="{path: 'fecha', type: 'sap.ui.model.type.String'}"/></table:template></table:Column>
+                    <table:Column><Label text="{i18n>supplierinvoice.column.vencimiento}"/><table:template><Text text="{path: 'dueDate', type: 'sap.ui.model.type.String'}"/></table:template></table:Column>
                 </table:columns>
             </table:Table>
         </content>

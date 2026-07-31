@@ -29,7 +29,16 @@
                                 <f:fields><Text text="{estado}"/></f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>invoiceDetail.field.fecha}">
-                                <f:fields><Text text="{fecha}"/></f:fields>
+                                <f:fields><Text text="{path: 'fecha', type: 'sap.ui.model.type.String'}"/></f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>invoiceDetail.field.vencimiento}">
+                                <f:fields><Text text="{path: 'dueDate', type: 'sap.ui.model.type.String'}"/></f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>invoiceDetail.field.neto}">
+                                <f:fields><ObjectNumber number="{netAmount}"/></f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>invoiceDetail.field.iva}">
+                                <f:fields><ObjectNumber number="{taxAmount}"/></f:fields>
                             </f:FormElement>
                         </f:formElements>
                     </f:FormContainer>
