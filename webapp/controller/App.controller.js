@@ -352,15 +352,23 @@ sap.ui.define([
                 return;
               }
               var t = idTests[j];
+              // N21 (ciclo 13): el timer del race se cancelaba; al resolver el
+              // test antes de los 30s, el setTimeout huérfano logueaba un
+              // "TEST TIMEOUT (30s)" fantasma ~30s después. clearTimeout evita
+              // que el harness reporte FAIL falsos en logs largos.
+              var timeoutId = null;
               Promise.race([
                 Promise.resolve().then(t.fn),
                 new Promise(function (res) {
-                  setTimeout(function () {
+                  timeoutId = setTimeout(function () {
                     that._log(t.name, false, "TEST TIMEOUT (30s)", "");
                     res();
                   }, 30000);
                 })
-              ]).then(function () { runId(j + 1); });
+              ]).then(function () {
+                if (timeoutId !== null) clearTimeout(timeoutId);
+                runId(j + 1);
+              });
             }
             runId(0);
           }).catch(function (e) {
@@ -369,15 +377,21 @@ sap.ui.define([
           return;
         }
         var t = tests[i];
+        // N21 (ciclo 13): clearTimeout del race para evitar FAIL fantasma
+        // cuando el test resuelve antes de los 30s (ver runId).
+        var timeoutId = null;
         Promise.race([
           Promise.resolve().then(t.fn.bind(that)),
           new Promise(function (res) {
-            setTimeout(function () {
+            timeoutId = setTimeout(function () {
               that._log(t.name, false, "TEST TIMEOUT (30s)", "");
               res();
             }, 30000);
           })
-        ]).then(function () { run(i + 1); });
+        ]).then(function () {
+          if (timeoutId !== null) clearTimeout(timeoutId);
+          run(i + 1);
+        });
       }
       run(0);
     },
