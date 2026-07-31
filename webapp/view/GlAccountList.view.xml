@@ -1,0 +1,21 @@
+<mvc:View
+    controllerName="ui5.odata.demo.controller.GlAccountList"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:table="sap.ui.table">
+    <Page title="{i18n>page.glAccountList.title}">
+        <content>
+            <table:Table id="tblGlAccounts"
+                rows="{/gl-account-odata}"
+                threshold="10"
+                enableBusyIndicator="true"
+                selectionMode="Single"
+                selectionBehavior="Row">
+                <table:columns>
+                    <table:Column><Label text="{i18n>glaccount.column.id}"/><table:template><Text text="{id}"/></table:template></table:Column>
+                    <table:Column><Label text="{i18n>glaccount.column.nombre}"/><table:template><Text text="{nombre}"/></table:template></table:Column>
+                </table:columns>
+            </table:Table>
+        </content>
+    </Page>
+</mvc:View>

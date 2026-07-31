@@ -1,0 +1,25 @@
+<mvc:View
+    controllerName="ui5.odata.demo.controller.InvoiceItemList"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:table="sap.ui.table">
+    <Page title="{i18n>page.invoiceItemList.title}">
+        <content>
+            <table:Table id="tblInvoiceItems"
+                rows="{/invoice-item-odata}"
+                threshold="10"
+                enableBusyIndicator="true"
+                selectionMode="Single"
+                selectionBehavior="Row">
+                <table:columns>
+                    <table:Column><Label text="{i18n>invoiceItem.column.id}"/><table:template><Text text="{id}"/></table:template></table:Column>
+                    <table:Column><Label text="{i18n>invoiceItem.column.factura}"/><table:template><Text text="{invoiceId}"/></table:template></table:Column>
+                    <table:Column><Label text="{i18n>invoiceItem.column.cuenta}"/><table:template><Text text="{glAccountId}"/></table:template></table:Column>
+                    <table:Column><Label text="{i18n>invoiceItem.column.material}"/><table:template><Text text="{material}"/></table:template></table:Column>
+                    <table:Column><Label text="{i18n>invoiceItem.column.cantidad}"/><table:template><Text text="{cantidad}"/></table:template></table:Column>
+                    <table:Column><Label text="{i18n>invoiceItem.column.importe}"/><table:template><ObjectNumber number="{importe}"/></table:template></table:Column>
+                </table:columns>
+            </table:Table>
+        </content>
+    </Page>
+</mvc:View>

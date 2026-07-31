@@ -1,0 +1,25 @@
+<mvc:View
+    controllerName="ui5.odata.demo.controller.SupplierInvoiceList"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:table="sap.ui.table">
+    <Page title="{i18n>page.supplierInvoiceList.title}">
+        <content>
+            <table:Table id="tblSupplierInvoices"
+                rows="{/supplier-invoice-odata}"
+                threshold="10"
+                enableBusyIndicator="true"
+                selectionMode="Single"
+                selectionBehavior="Row">
+                <table:columns>
+                    <table:Column><Label text="{i18n>supplierinvoice.column.id}"/><table:template><Text text="{id}"/></table:template></table:Column>
+                    <table:Column><Label text="{i18n>supplierinvoice.column.proveedor}"/><table:template><Text text="{supplierId}"/></table:template></table:Column>
+                    <table:Column><Label text="{i18n>supplierinvoice.column.importe}"/><table:template><ObjectNumber number="{importe}"/></table:template></table:Column>
+                    <table:Column><Label text="{i18n>supplierinvoice.column.moneda}"/><table:template><Text text="{moneda}"/></table:template></table:Column>
+                    <table:Column><Label text="{i18n>supplierinvoice.column.estado}"/><table:template><Text text="{estado}"/></table:template></table:Column>
+                    <table:Column><Label text="{i18n>supplierinvoice.column.fecha}"/><table:template><Text text="{fecha}"/></table:template></table:Column>
+                </table:columns>
+            </table:Table>
+        </content>
+    </Page>
+</mvc:View>

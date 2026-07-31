@@ -20,20 +20,32 @@ module.exports = function () {
   const TARGET_HOST = "127.0.0.1";
   const TARGET_PORT = 3000;
 
-    // Finance entity sets need /finance/ prefix in the URL, but the OData V4 model
-    // binds to entity set names directly (e.g., "invoice-odata"), not to the URL
-    // path "finance/invoice-odata". Rewrite root entity set paths to /finance/.
-    var FINANCE_ENTITY_SETS = [
-        "invoice-odata", "customer-odata", "payment-odata",
-        "company-odata", "supplier-odata", "gl-account-odata",
-        "supplier-invoice-odata", "invoice-item-odata"
-    ];
-    var FINANCE_RE = new RegExp("^/(" + FINANCE_ENTITY_SETS.join("|") + ")(\\?|/|$)");
+    // Finance entity sets: the OData metadata exposes entity set names (used by
+    // UI5 bindings) sometimes with hyphens (e.g., "supplier-invoice-odata") but
+    // the backend controller endpoints use the literal camelCase (e.g.,
+    // "supplierinvoice-odata"). This map pairs the metadata name (what the UI5
+    // ODataModel sends) to the actual backend endpoint name.
+    var FINANCE_ENDPOINT_MAP = {
+        "invoice-odata": "invoice-odata",
+        "customer-odata": "customer-odata",
+        "payment-odata": "payment-odata",
+        "company-odata": "company-odata",
+        "supplier-odata": "supplier-odata",
+        "gl-account-odata": "glaccount-odata",
+        "supplier-invoice-odata": "supplierinvoice-odata",
+        "invoice-item-odata": "invoiceitem-odata",
+        "invoiceItem-odata": "invoiceitem-odata"
+    };
+    var FINANCE_RE = new RegExp("^/?(" + Object.keys(FINANCE_ENDPOINT_MAP).join("|") + ")(\\?|/|$)");
 
     return function (req, res, next) {
         var stripped = req.url || "";
         // Rewrite root entity set paths to /finance/ for the backend
-        stripped = stripped.replace(FINANCE_RE, "/finance/$1$2");
+        // using the endpoint map to resolve metadata names to actual paths.
+        stripped = stripped.replace(FINANCE_RE, function(match, entitySet, rest) {
+            var backendName = FINANCE_ENDPOINT_MAP[entitySet];
+            return "/finance/" + backendName + rest;
+        });
         var fullPath = "/odata" + stripped;
     log("[proxy] " + req.method + " " + JSON.stringify(req.url) + " -> " + fullPath);
 

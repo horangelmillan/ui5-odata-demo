@@ -239,27 +239,23 @@ sap.ui.define([
                 return;
             }
 
+            oCtx.setProperty("customerId", sCustomerKey);
+            oCtx.setProperty("companyId", sCompanyKey);
+            oCtx.setProperty("importe", parseFloat(sImporte));
+            oCtx.setProperty("moneda", sMoneda);
+            oCtx.setProperty("fecha", sFecha);
+
             var that = this;
-            oCtx.setProperty("customerId", sCustomerKey).then(function () {
-                oCtx.setProperty("companyId", sCompanyKey).then(function () {
-                    oCtx.setProperty("importe", parseFloat(sImporte)).then(function () {
-                        oCtx.setProperty("moneda", sMoneda).then(function () {
-                            oCtx.setProperty("fecha", sFecha).then(function () {
-                                that.oModel.submitBatch(that.oModel.getUpdateGroupId()).then(function () {
-                                    that._oInvoiceEditDialog.close();
-                                    MessageToast.show("Factura actualizada exitosamente");
-                                    var oTable = that.byId("tblInvoices");
-                                    if (oTable) {
-                                        var oBinding = oTable.getBinding("rows");
-                                        if (oBinding) oBinding.refresh();
-                                    }
-                                }, function (oError) {
-                                    that._showMessageStrip("editInvoiceMessageStripBox", "Error", oError.message || "Error al actualizar la factura");
-                                });
-                            });
-                        });
-                    });
-                });
+            this.oModel.submitBatch(this.oModel.getUpdateGroupId()).then(function () {
+                that._oInvoiceEditDialog.close();
+                MessageToast.show("Factura actualizada exitosamente");
+                var oTable = that.byId("tblInvoices");
+                if (oTable) {
+                    var oBinding = oTable.getBinding("rows");
+                    if (oBinding) oBinding.refresh();
+                }
+            }, function (oError) {
+                that._showMessageStrip("editInvoiceMessageStripBox", "Error", oError.message || "Error al actualizar la factura");
             });
         },
 

@@ -47,7 +47,8 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "ui5.odata.demo.i18n.i18n"
+          "bundleName": "ui5.odata.demo.i18n.i18n",
+          "supportedLocales": ["", "en"]
         }
       }
     },
@@ -100,6 +101,26 @@
           "pattern": "finance/payment-odata",
           "name": "paymentList",
           "target": ["paymentList"]
+        },
+        {
+          "pattern": "finance/supplier-odata",
+          "name": "supplierList",
+          "target": ["supplierList"]
+        },
+        {
+          "pattern": "finance/supplier-invoice-odata",
+          "name": "supplierInvoiceList",
+          "target": ["supplierInvoiceList"]
+        },
+        {
+          "pattern": "finance/gl-account-odata",
+          "name": "glAccountList",
+          "target": ["glAccountList"]
+        },
+        {
+          "pattern": "finance/invoice-item-odata",
+          "name": "invoiceItemList",
+          "target": ["invoiceItemList"]
         }
       ],
       "targets": {
@@ -142,6 +163,30 @@
         "paymentList": {
           "type": "View",
           "name": "PaymentList",
+          "path": "ui5.odata.demo.view",
+          "controlAggregation": "pages"
+        },
+        "supplierList": {
+          "type": "View",
+          "name": "SupplierList",
+          "path": "ui5.odata.demo.view",
+          "controlAggregation": "pages"
+        },
+        "supplierInvoiceList": {
+          "type": "View",
+          "name": "SupplierInvoiceList",
+          "path": "ui5.odata.demo.view",
+          "controlAggregation": "pages"
+        },
+        "glAccountList": {
+          "type": "View",
+          "name": "GlAccountList",
+          "path": "ui5.odata.demo.view",
+          "controlAggregation": "pages"
+        },
+        "invoiceItemList": {
+          "type": "View",
+          "name": "InvoiceItemList",
           "path": "ui5.odata.demo.view",
           "controlAggregation": "pages"
         }

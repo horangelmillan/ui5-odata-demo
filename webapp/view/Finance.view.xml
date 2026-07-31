@@ -27,6 +27,26 @@
                             <core:CustomData key="entityName" value="payment"/>
                         </customData>
                     </ActionListItem>
+                    <ActionListItem text="{i18n>finance.entity.supplier}" icon="sap-icon://supplier">
+                        <customData>
+                            <core:CustomData key="entityName" value="supplier"/>
+                        </customData>
+                    </ActionListItem>
+                    <ActionListItem text="{i18n>finance.entity.supplierInvoice}" icon="sap-icon://fa-solid/file-invoice">
+                        <customData>
+                            <core:CustomData key="entityName" value="supplierInvoice"/>
+                        </customData>
+                    </ActionListItem>
+                    <ActionListItem text="{i18n>finance.entity.glAccount}" icon="sap-icon://account">
+                        <customData>
+                            <core:CustomData key="entityName" value="glAccount"/>
+                        </customData>
+                    </ActionListItem>
+                    <ActionListItem text="{i18n>finance.entity.invoiceItem}" icon="sap-icon://fa-solid/file-invoice">
+                        <customData>
+                            <core:CustomData key="entityName" value="invoiceItem"/>
+                        </customData>
+                    </ActionListItem>
                 </items>
             </List>
         </content>

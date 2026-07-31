@@ -2,16 +2,29 @@
     controllerName="ui5.odata.demo.controller.PaymentList"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
+    xmlns:core="sap.ui.core"
     xmlns:table="sap.ui.table">
 
     <Page title="{i18n>page.paymentList.title}">
         <content>
+            <OverflowToolbar id="filterToolbar">
+                <Label text="{i18n>payment.filter.metodo}"/>
+                <ComboBox id="filterMetodo" placeholder="{i18n>payment.filter.all}">
+                    <core:Item key="" text="{i18n>payment.filter.all}"/>
+                    <core:Item key="TRANSFER" text="TRANSFER"/>
+                    <core:Item key="CARD" text="CARD"/>
+                    <core:Item key="CHECK" text="CHECK"/>
+                </ComboBox>
+                <Button text="{i18n>payment.filter.apply}" press=".onFilter"/>
+                <Button text="{i18n>payment.filter.clear}" press=".onClearFilter"/>
+            </OverflowToolbar>
             <table:Table id="tblPayments"
                 rows="{/payment-odata}"
                 threshold="10"
                 enableBusyIndicator="true"
                 selectionMode="Single"
-                selectionBehavior="Row">
+                selectionBehavior="Row"
+                rowSelectionChange=".onPaymentSelect">
                 <table:columns>
                     <table:Column>
                         <Label text="{i18n>payment.column.id}"/>
