@@ -113,6 +113,11 @@
           "target": ["supplierInvoiceList"]
         },
         {
+          "pattern": "finance/supplier-invoice-odata/{supplierInvoiceId}",
+          "name": "supplierInvoiceDetail",
+          "target": ["supplierInvoiceDetail"]
+        },
+        {
           "pattern": "finance/gl-account-odata",
           "name": "glAccountList",
           "target": ["glAccountList"]
@@ -175,6 +180,12 @@
         "supplierInvoiceList": {
           "type": "View",
           "name": "SupplierInvoiceList",
+          "path": "ui5.odata.demo.view",
+          "controlAggregation": "pages"
+        },
+        "supplierInvoiceDetail": {
+          "type": "View",
+          "name": "SupplierInvoiceDetail",
           "path": "ui5.odata.demo.view",
           "controlAggregation": "pages"
         },
