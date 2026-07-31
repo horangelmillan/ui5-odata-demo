@@ -15,7 +15,8 @@ sap.ui.define([
         _onRouteMatched: function (oEvent) {
             var sCustomerId = oEvent.getParameter("arguments").customerId;
             this.getView().bindElement({
-                path: "/customer-odata/" + sCustomerId,
+                // N18 (ciclo 13): sintaxis por-key OData v4 con paréntesis.
+                path: "/customer-odata('" + sCustomerId + "')",
                 parameters: {
                     $expand: {
                         invoices: true
