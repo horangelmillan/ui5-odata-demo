@@ -15,7 +15,10 @@ sap.ui.define([
         _onRouteMatched: function (oEvent) {
             var sInvoiceId = oEvent.getParameter("arguments").invoiceId;
             this.getView().bindElement({
-                path: "/invoice-odata/" + sInvoiceId,
+                // N18 (ciclo 13): la sintaxis por-key OData v4 usa paréntesis
+                // `entity('id')`; con slash (`entity/id`) UI5 v4 no separa la clave
+                // del meta path y el binding nunca envía el request.
+                path: "/invoice-odata('" + sInvoiceId + "')",
                 parameters: {
                     $expand: {
                         customer: true,

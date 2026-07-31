@@ -36,7 +36,7 @@ module.exports = function () {
         "invoice-item-odata": "invoiceitem-odata",
         "invoiceItem-odata": "invoiceitem-odata"
     };
-    var FINANCE_RE = new RegExp("^/?(" + Object.keys(FINANCE_ENDPOINT_MAP).join("|") + ")(\\?|/|$)");
+    var FINANCE_RE = new RegExp("^/?(" + Object.keys(FINANCE_ENDPOINT_MAP).join("|") + ")(\\?|\\(|/|$)");
 
     return function (req, res, next) {
         var stripped = req.url || "";
